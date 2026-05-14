@@ -1,0 +1,30 @@
+FROM python:3.9-alpine
+# Do I use alpine? or something else?
+LABEL maintainer="OBE"
+# Does it need to be an email? or basically anything?
+LABEL description="A sample Python Flask application"
+ARG APP_VERSION=1.0
+ENV FLASK_APP=app.py
+# this is the application itself right? why is it under ENV and not RUN?
+ENV APP_MODE=exercise
+WORKDIR /home/obe/app
+COPY requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+# Is this where the flask is being installed inside the container?
+RUN apt-get update && \
+	apt-get install -y --no-install-recommends \
+	curl \
+	git \
+	vim \
+	&& rm -rf /var/lib/apt/lists/*
+# Can you explain the second RUN command?
+COPY ..
+# Not sure why do I need COPY .. ?
+USER OBE
+# the user suppose to be me? or root? it shouldnt be root for security reasons right? how do i check the name of my user?
+EXPOSE 5000
+VOLUME ["/home/obe/app/data"]
+# Not sure if I need this or not, I dont think i have a data folder under /home/obe/app.. do I need to create it? is something suppose to be there already?
+ENTRYPOINT ["python"]
+CMD ["app.py"]
+# Not sure about the ENTRYPOINT and CMD
