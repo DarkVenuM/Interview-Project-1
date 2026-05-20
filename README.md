@@ -24,8 +24,8 @@ The application is a simple Flask app deployed automatically to Amazon EKS using
 
 ## Architecture
 
-Github
-Github Actions
+GitHub
+GitHub Actions
 Docker Build
 Amazon ECR
 Helm Deployment
@@ -54,14 +54,14 @@ Resources created:
 
 The GitHub Actions workflow automatically:
 
-1. Build the Docker image
+1. Builds the Docker image
 2. Pushes the image to Amazon ECR
 3. Connects to the EKS cluster
 4. Deploys the application using Helm
 
 Workflow file:
 
-.github/workflows/deply.yml
+.github/workflows/deploy.yml
 
 ---
 
@@ -102,7 +102,7 @@ terraform destroy
 ---
 
 
-## Aplication Test
+## Application Test
 
 curl http://<LOADBALANCER_URL>:5000
 
